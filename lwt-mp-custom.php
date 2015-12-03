@@ -91,3 +91,33 @@ add_action( 'admin_menu', 'mp_store_sub_menus' , 999 );
 
 
 
+/**
+/* to hack for MP force submit paypal id
+* http://demo.lcl/wp-admin/network/settings.php?page=network-store-settings
+* @fixed - hack 
+***/
+function wmpu_mp_network_setting_disable_paypal_id_on_save_lwt(){
+	// - to hack for MP force submit paypal id - network settting page
+    echo $jsc =  <<<JSC
+        
+    <script type="text/javascript">
+
+        jQuery(function(){
+
+            jQuery("input[name='gateways[paypal_chained][email]']").removeAttr("data-rule-required");
+            jQuery("input[name='gateways[paypal_chained][email]']").removeAttr("data-rule-email");
+            jQuery("input[name='gateways[paypal_chained][email]']").removeAttr("aria-required");
+
+        } );
+
+
+    </script>
+
+
+JSC;
+
+
+
+}
+
+add_action('admin_footer','wmpu_mp_network_setting_disable_paypal_id_on_save_lwt');
