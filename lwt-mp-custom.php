@@ -91,12 +91,20 @@ add_action( 'admin_menu', 'mp_store_sub_menus' , 999 );
 
 
 
+
 /**
-/* to hack for MP force submit paypal id
+/* to fixed for MP force submit paypal id
 * http://demo.lcl/wp-admin/network/settings.php?page=network-store-settings
 * @fixed - hack 
+* @AK
 ***/
 function wmpu_mp_network_setting_disable_paypal_id_on_save_lwt(){
+	
+	
+   $screen = get_current_screen();
+    
+ if('settings_page_network-store-settings-network' == $screen->id && is_admin() ){
+ 
 	// - to hack for MP force submit paypal id - network settting page
     echo $jsc =  <<<JSC
         
@@ -116,7 +124,7 @@ function wmpu_mp_network_setting_disable_paypal_id_on_save_lwt(){
 
 JSC;
 
-
+}
 
 }
 
